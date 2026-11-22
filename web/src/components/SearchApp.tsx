@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "preact/hooks";
 import type { Episode, FilterState, ColumnVisibility } from "../lib/types";
-import { ARCS } from "../lib/constants";
+import { ARCS, PLOT_NOTES } from "../lib/constants";
 import { filterEpisodes } from "../lib/filterLogic";
 import { FilterPanel } from "./FilterPanel";
 import { EpisodeTable } from "./EpisodeTable";
@@ -107,8 +107,9 @@ export function SearchApp() {
     return { canonCount: canon, fillerCount: filler };
   }, [filteredEpisodes]);
 
-  // Thông tin Arc khi được chọn
+  // Thông tin Arc và Plot khi được chọn
   const activeArcInfo = ARCS.find((a) => a.value === filters.arc);
+  const activePlotInfo = PLOT_NOTES.find((p) => p.value === filters.plot[0]);
 
   return (
     <div class="space-y-5">
@@ -121,12 +122,19 @@ export function SearchApp() {
         onReset={handleReset}
       />
 
-      {/* 2 & 3. MÔ TẢ ARC + THANH THỐNG KÊ */}
+      {/* 2 & 3. MÔ TẢ ARC / PLOT + THANH THỐNG KÊ */}
       <div class="space-y-1.5 px-1">
         {activeArcInfo && (
           <div class="text-sm text-[#495057] leading-relaxed">
             <strong class="font-semibold text-[#1B365D]">Arc {activeArcInfo.label}:</strong>{" "}
             <span>{activeArcInfo.desc}</span>
+          </div>
+        )}
+
+        {activePlotInfo && (
+          <div class="text-sm text-[#495057] leading-relaxed">
+            <strong class="font-semibold text-[#1B365D]">{activePlotInfo.label}:</strong>{" "}
+            <span>{activePlotInfo.desc}</span>
           </div>
         )}
 

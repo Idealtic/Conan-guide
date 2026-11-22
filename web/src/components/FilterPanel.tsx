@@ -219,8 +219,8 @@ export function FilterPanel({
             class="w-full bg-[#F8F9FA] border border-[#DEE2E6] rounded-md px-3 py-1.5 text-xs text-[#212529] focus:outline-none focus:ring-1 focus:ring-[#1B365D]"
           >
             <option value="">Chọn hệ tập (Nhật Bản / Việt Nam)</option>
-            <option value="jp">Theo tập Nhật Bản (gốc)</option>
-            <option value="vn">Theo tập Việt Nam (POPS)</option>
+            <option value="jp">Theo tập Nhật Bản</option>
+            <option value="vn">Theo tập Việt Nam</option>
           </select>
 
           {/* Input nhập số tập + Nút Đi tới */}

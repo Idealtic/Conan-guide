@@ -2,4 +2,4 @@
 @import "tailwindcss/theme" reference;
 @import "tailwindcss/utilities" layer(components) source(none);
 @plugin "@tailwindcss/typography";
-@source inline("prose prose-slate");
+@source inline("prose prose-slate prose-a:text-blue-600 hover:prose-a:text-blue-800");
