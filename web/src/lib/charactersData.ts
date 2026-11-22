@@ -242,7 +242,8 @@ export const CHARACTERS_DATA = [
       "Amuro Tooru",
       "Tooru Amuro",
       "Amuro Toru",
-      "Toru Amuro"
+      "Toru Amuro",
+      "Zero"
     ]
   },
   {
