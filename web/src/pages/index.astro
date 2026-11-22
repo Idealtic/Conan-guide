@@ -1,6 +1,19 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
+import crypto from "node:crypto";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SearchApp from "../components/SearchApp";
+
+const candidatePaths = [
+  path.resolve(process.cwd(), "public/data/episodes.json"),
+  path.resolve(process.cwd(), "web/public/data/episodes.json"),
+];
+const episodesJsonPath = candidatePaths.find((p) => fs.existsSync(p));
+const dataHash = episodesJsonPath
+  ? crypto.createHash("sha256").update(fs.readFileSync(episodesJsonPath)).digest("hex").slice(0, 8)
+  : Date.now().toString(36);
+const episodesUrl = `/data/episodes.json?v=${dataHash}`;
 ---
 
 <BaseLayout
@@ -8,8 +21,8 @@ import SearchApp from "../components/SearchApp";
   description="Tra cứu danh sách tập phim Thám Tử Lừng Danh Conan theo số tập JP/VN, Canon/Filler, Arc và manh mối."
   currentPath="/"
 >
-  <link slot="head" rel="preload" href="/data/episodes.json" as="fetch" crossorigin="anonymous" />
+  <link slot="head" rel="preload" href={episodesUrl} as="fetch" crossorigin="anonymous" />
   <div class="space-y-4">
-    <SearchApp client:load />
+    <SearchApp dataUrl={episodesUrl} client:load />
   </div>
 </BaseLayout>

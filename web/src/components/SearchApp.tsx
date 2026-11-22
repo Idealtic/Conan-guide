@@ -27,7 +27,11 @@ const defaultColumns: ColumnVisibility = {
   clues: false,
 };
 
-export function SearchApp() {
+interface SearchAppProps {
+  dataUrl?: string;
+}
+
+export function SearchApp({ dataUrl = "/data/episodes.json" }: SearchAppProps) {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -38,7 +42,7 @@ export function SearchApp() {
   const loadEpisodes = useCallback(() => {
     setIsLoading(true);
     setLoadError(null);
-    fetch("/data/episodes.json")
+    fetch(dataUrl)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}: Không thể tải dữ liệu tập phim`);
         return res.json();
@@ -55,7 +59,7 @@ export function SearchApp() {
         setLoadError("Không thể tải dữ liệu tập phim. Vui lòng kiểm tra kết nối và thử lại.");
         setIsLoading(false);
       });
-  }, []);
+  }, [dataUrl]);
 
   // Fetch dữ liệu tập phim từ public/data/episodes.json (được sync từ data/episode_info_full.json)
   useEffect(() => {
