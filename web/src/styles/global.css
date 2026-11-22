@@ -1,0 +1,36 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #F8F9FA;
+  --color-bg-surface: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-navy-900: #0F2C59;
+  --color-navy-700: #1B365D;
+  --color-navy-100: #E8EDF3;
+  --color-red-accent: #C82333;
+  --color-red-dark: #A71D2A;
+  --color-canon-green: #198754;
+  --color-filler-orange: #FD7E14;
+  --color-disabled-gray: #ADB5BD;
+  --color-border-light: #DEE2E6;
+  --color-text-primary: #212529;
+  --color-text-secondary: #6C757D;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    background-color: var(--color-bg-primary);
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+  }
+}

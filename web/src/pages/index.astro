@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SearchApp from "../components/SearchApp";
+---
+
+<BaseLayout
+  title="Tra cứu tập phim Conan - Conan Guide"
+  description="Tra cứu danh sách tập phim Thám Tử Lừng Danh Conan theo số tập JP/VN, Canon/Filler, Arc và manh mối."
+  currentPath="/"
+>
+  <link slot="head" rel="preload" href="/data/episodes.json" as="fetch" crossorigin="anonymous" />
+  <div class="space-y-4">
+    <SearchApp client:load />
+  </div>
+</BaseLayout>

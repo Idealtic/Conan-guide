@@ -1,0 +1,52 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "/" } = Astro.props;
+
+const navItems = [
+  { label: "Tra cứu", href: "/" },
+  { label: "Hướng dẫn", href: "/huong-dan" },
+  { label: "Giới thiệu", href: "/gioi-thieu" },
+];
+---
+
+<header class="sticky top-0 z-50 bg-[#0F2C59] text-white shadow-md border-b border-[#1B365D]">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2.5 sm:py-0 sm:h-16 gap-2 sm:gap-4">
+      <!-- Logo / Title -->
+      <div class="flex items-center gap-2 min-w-0 select-none">
+        <span class="shrink-0 text-xl sm:text-2xl leading-none" aria-hidden="true">
+          🔍
+        </span>
+        <div class="flex flex-col min-w-0">
+          <span class="font-bold text-base sm:text-lg tracking-tight leading-tight text-white whitespace-nowrap truncate">Conan Guide</span>
+          <span class="text-[11px] text-gray-300 font-normal leading-none hidden sm:inline">Tra cứu tập phim Thám Tử Lừng Danh Conan</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="grid grid-cols-3 sm:flex items-center w-full sm:w-auto gap-1 sm:gap-0 sm:space-x-1 shrink-0">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class={`relative text-center px-2 sm:px-4 py-1.5 sm:py-2 rounded-md text-[15px] font-medium whitespace-nowrap transition-colors ${
+                isActive
+                  ? "text-white bg-[#1B365D]"
+                  : "text-gray-200 hover:text-white hover:bg-[#1B365D]/60"
+              }`}
+            >
+              {item.label}
+              {isActive && (
+                <span class="absolute bottom-0 left-2 right-2 sm:left-3 sm:right-3 h-0.5 bg-[#C82333] rounded-full"></span>
+              )}
+            </a>
+          );
+        })}
+      </nav>
+    </div>
+  </div>
+</header>

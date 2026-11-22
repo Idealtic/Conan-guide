@@ -1,0 +1,5 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme" reference;
+@import "tailwindcss/utilities" layer(components) source(none);
+@plugin "@tailwindcss/typography";
+@source inline("prose prose-slate");
